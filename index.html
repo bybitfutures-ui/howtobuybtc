@@ -20,8 +20,9 @@
 <link rel="alternate" hreflang="en" href="https://howtobuybtc.com?lang=en">
 <link rel="alternate" hreflang="ko" href="https://howtobuybtc.com?lang=ko">
 <link rel="alternate" hreflang="x-default" href="https://howtobuybtc.com?lang=en">
+<link rel="icon" id="favicon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>₿</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700;900&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700;900&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"1BTC","url":"https://howtobuybtc.com","description":"Bitcoin and crypto exchange registration tutorials","inLanguage":["zh-CN","zh-TW","en","ko"]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How to choose a crypto exchange?","acceptedAnswer":{"@type":"Answer","text":"Compare trading volume, security features, fee structures and supported currencies. Major exchanges include Binance (largest by volume) and OKX (competitive fees at 0.08%)."}},{"@type":"Question","name":"How to buy Bitcoin?","acceptedAnswer":{"@type":"Answer","text":"Register on a crypto exchange, complete identity verification (KYC), deposit funds via P2P or bank transfer, then purchase BTC on the spot market."}},{"@type":"Question","name":"What are crypto exchange fees?","acceptedAnswer":{"@type":"Answer","text":"Spot trading fees typically range from 0.08% to 0.1%. Many exchanges offer fee discounts for high volume traders or referral signups."}}]}</script>
 <style>
@@ -33,12 +34,12 @@
 --gd:#38bdf8;--gdg:rgba(56,189,248,.07);
 --rd:#f87171;--bl:#60a5fa;
 --fd:'Syne','Noto Sans SC',sans-serif;
---fb:'DM Sans','Noto Sans SC',sans-serif;
+--fb:'Manrope','Noto Sans SC',sans-serif;
 --fm:'DM Mono',monospace
 }
-[data-lang=tw]{--fb:'DM Sans','Noto Sans TC',sans-serif;--fd:'Syne','Noto Sans TC',sans-serif}
-[data-lang=ko]{--fb:'DM Sans','Noto Sans KR',sans-serif;--fd:'Syne','Noto Sans KR',sans-serif}
-[data-lang=en]{--fb:'DM Sans',sans-serif}
+[data-lang=tw]{--fb:'Manrope','Noto Sans TC',sans-serif;--fd:'Syne','Noto Sans TC',sans-serif}
+[data-lang=ko]{--fb:'Manrope','Noto Sans KR',sans-serif;--fd:'Syne','Noto Sans KR',sans-serif}
+[data-lang=en]{--fb:'Manrope',sans-serif}
 html{scroll-behavior:smooth}
 body{font-family:var(--fb);background:var(--bg);color:var(--tx);line-height:1.85;overflow-x:hidden;-webkit-font-smoothing:antialiased;font-size:15px}
 a{color:inherit;text-decoration:none}::selection{background:var(--em);color:#000}
@@ -51,14 +52,31 @@ a{color:inherit;text-decoration:none}::selection{background:var(--em);color:#000
 .mx{max-width:1060px;margin:0 auto;padding:0 20px;position:relative;z-index:1}
 .fi{opacity:0;transform:translateY(14px);transition:opacity .45s,transform .45s}.fi.v{opacity:1;transform:none}
 
-/* TICKER */
-.tk{position:fixed;top:0;left:0;right:0;height:28px;background:rgba(17,24,39,.95);border-bottom:1px solid rgba(250,204,21,.08);z-index:1001;overflow:hidden;display:flex;align-items:center}
-.tk-t{display:flex;gap:28px;animation:tkm 28s linear infinite;white-space:nowrap;font-family:var(--fm);font-size:.63rem;color:var(--tx2)}
-.tk-t .u{color:#4ade80;font-weight:500}.tk-t .d{color:var(--rd);font-weight:500}
-@keyframes tkm{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+/* TICKER LIVE */
+.tk{position:fixed;top:0;left:0;right:0;height:30px;background:rgba(11,15,25,.96);border-bottom:1px solid rgba(250,204,21,.06);z-index:1001;display:flex;align-items:center;overflow:hidden}
+.tk-inner{display:flex;gap:20px;padding:0 16px;overflow-x:auto;width:100%;scrollbar-width:none;align-items:center;animation:tkScroll 40s linear infinite}
+.tk-inner::-webkit-scrollbar{display:none}
+@keyframes tkScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.tk-i{display:flex;align-items:center;gap:5px;white-space:nowrap;font-family:var(--fm);font-size:.64rem;flex-shrink:0}
+.tk-i .s{color:var(--tx);font-weight:600}.tk-i .p{color:var(--tx2)}.tk-i .up{color:#4ade80;font-weight:500;font-size:.6rem}.tk-i .dn{color:var(--rd);font-weight:500;font-size:.6rem}
+
+/* LIVE PRICE CARDS */
+.lp-g{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:10px}
+.lp{background:rgba(17,24,39,.9);border:1px solid rgba(255,255,255,.06);border-radius:11px;padding:16px 14px;transition:.25s;position:relative;overflow:hidden}
+.lp::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--em);opacity:.12}
+.lp:hover{border-color:rgba(250,204,21,.15);transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.2)}
+.lp-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+.lp-sym{font-family:var(--fd);font-weight:700;font-size:.85rem}
+.lp-chg{font-family:var(--fm);font-size:.65rem;font-weight:500;padding:2px 6px;border-radius:3px}
+.lp-chg.up{color:#4ade80;background:rgba(74,222,128,.08)}.lp-chg.dn{color:var(--rd);background:rgba(248,113,113,.08)}
+.lp-pr{font-family:var(--fm);font-size:1.15rem;font-weight:700;color:var(--tx);margin-bottom:10px;letter-spacing:-.5px}
+.lp-pr .ld{color:var(--tx3);font-size:.75rem;font-weight:400}
+.lp-buy{display:block;text-align:center;padding:6px;border-radius:6px;font-family:var(--fd);font-weight:600;font-size:.68rem;transition:.2s;cursor:pointer;border:0}
+.lp-buy.m{background:var(--em);color:#000}.lp-buy.m:hover{box-shadow:0 0 12px rgba(250,204,21,.2)}
+.lp-buy.g{background:var(--gd);color:#fff}.lp-buy.g:hover{box-shadow:0 0 12px rgba(56,189,248,.2)}
 
 /* HEADER */
-header{position:fixed;top:28px;left:0;right:0;z-index:1000;transition:.3s}
+header{position:fixed;top:30px;left:0;right:0;z-index:1000;transition:.3s}
 header.s{background:rgba(11,15,25,.92);backdrop-filter:blur(20px) saturate(1.3);border-bottom:1px solid rgba(250,204,21,.06)}
 header .mx{display:flex;align-items:center;justify-content:space-between;height:54px}
 .logo{display:flex;align-items:center;gap:8px;cursor:pointer}
@@ -87,7 +105,7 @@ header .mx{display:flex;align-items:center;justify-content:space-between;height:
 
 /* HERO */
 section{padding:58px 0}
-.hero{padding:106px 0 56px}
+.hero{padding:112px 0 50px}
 .hg{display:grid;grid-template-columns:1.1fr .9fr;gap:32px;align-items:start}
 .h-bd{display:inline-flex;align-items:center;gap:5px;background:var(--emg);border:1px solid var(--emb);border-radius:4px;padding:3px 9px;font-family:var(--fm);font-size:.62rem;color:var(--em);margin-bottom:14px}
 .h-bd .dt{width:5px;height:5px;border-radius:50%;background:var(--em);animation:bl 2s infinite}
@@ -192,39 +210,49 @@ footer a{color:var(--em)}
 .stt{position:fixed;bottom:16px;right:16px;width:32px;height:32px;border-radius:7px;background:var(--em);color:#000;border:0;font-size:.78rem;cursor:pointer;opacity:0;transition:.3s;z-index:999;display:flex;align-items:center;justify-content:center;font-weight:700;font-family:var(--fm);box-shadow:0 2px 10px rgba(250,204,21,.2)}.stt.sh{opacity:1}
 
 /* ADMIN */
-.ao{display:none;position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:2000;overflow-y:auto}
-.ad{max-width:640px;margin:16px auto;background:var(--bg2);border-radius:12px;padding:20px;border:1px solid rgba(250,204,21,.06);position:relative}
+.ao{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:2000;overflow-y:auto;backdrop-filter:blur(4px)}
+.ad{max-width:700px;margin:24px auto;background:var(--bg2);border-radius:14px;padding:28px;border:1px solid rgba(250,204,21,.08);position:relative}
 .ad::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--em),var(--gd))}
-.ad h2{font-family:var(--fd);font-size:.95rem;margin-bottom:8px}
-.ad label{display:block;font-size:.66rem;color:var(--tx2);margin:7px 0 2px;font-family:var(--fm)}
-.ad input,.ad textarea,.ad select{width:100%;padding:6px 8px;background:var(--bg3);border:1px solid rgba(255,255,255,.05);border-radius:5px;color:var(--tx);font-size:.76rem;font-family:var(--fb);resize:vertical}
-.ad input:focus,.ad textarea:focus{outline:0;border-color:var(--em)}
-.ad textarea{min-height:110px}
-.ab{display:flex;gap:4px;margin-top:8px;flex-wrap:wrap}
-.ab button{padding:6px 14px;border-radius:5px;border:0;font-weight:600;cursor:pointer;font-size:.72rem;font-family:var(--fd)}
-.abp{background:var(--em);color:#000}.abx{background:var(--bg4);color:var(--tx2)}.abd{background:rgba(239,68,68,.08);color:var(--rd)}
-.tabs2{display:flex;gap:2px;margin-bottom:8px;flex-wrap:wrap}
-.tabs2 button{padding:4px 9px;border-radius:4px;border:1px solid rgba(255,255,255,.04);background:0;color:var(--tx2);font-size:.66rem;cursor:pointer;font-family:var(--fd)}
+.ad h2{font-family:var(--fd);font-size:1.1rem;margin-bottom:12px}
+.ad label{display:block;font-size:.78rem;color:var(--tx2);margin:12px 0 4px;font-family:var(--fb);font-weight:500}
+.ad input,.ad textarea,.ad select{width:100%;padding:10px 12px;background:var(--bg3);border:1px solid rgba(255,255,255,.06);border-radius:8px;color:var(--tx);font-size:.88rem;font-family:var(--fb);resize:vertical;transition:border-color .2s}
+.ad input:focus,.ad textarea:focus{outline:0;border-color:var(--em);box-shadow:0 0 0 2px rgba(250,204,21,.08)}
+.ad textarea{min-height:180px;line-height:1.7}
+.ab{display:flex;gap:6px;margin-top:14px;flex-wrap:wrap}
+.ab button{padding:9px 20px;border-radius:7px;border:0;font-weight:600;cursor:pointer;font-size:.82rem;font-family:var(--fd);transition:.2s}
+.abp{background:var(--em);color:#000}.abp:hover{box-shadow:0 0 14px rgba(250,204,21,.2)}
+.abx{background:var(--bg4);color:var(--tx2)}.abx:hover{background:var(--bg5)}
+.abd{background:rgba(248,113,113,.08);color:var(--rd)}.abd:hover{background:rgba(248,113,113,.15)}
+.tabs2{display:flex;gap:3px;margin-bottom:14px;flex-wrap:wrap}
+.tabs2 button{padding:7px 14px;border-radius:7px;border:1px solid rgba(255,255,255,.06);background:0;color:var(--tx2);font-size:.78rem;cursor:pointer;font-family:var(--fd);transition:.2s}
+.tabs2 button:hover{background:var(--bg3)}
 .tabs2 button.on{background:var(--em);color:#000;border-color:var(--em)}
-.al2{margin-top:8px;border-top:1px solid rgba(255,255,255,.03);padding-top:6px}
-.ai2{display:flex;justify-content:space-between;align-items:center;padding:3px 0;border-bottom:1px solid rgba(255,255,255,.02);gap:4px}
-.ai2 span{font-size:.72rem;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.ai2 button{padding:2px 6px;border-radius:3px;border:0;font-size:.62rem;cursor:pointer}
-.rr2{display:flex;gap:4px;align-items:center;margin-bottom:3px}
-.rr2 label{min-width:38px;font-size:.64rem;color:var(--tx3);margin:0;flex-shrink:0}.rr2 input{flex:1;margin:0}
+.al2{margin-top:14px;border-top:1px solid rgba(255,255,255,.05);padding-top:10px}
+.ai2{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.03);gap:8px}
+.ai2 span{font-size:.82rem;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ai2 button{padding:4px 10px;border-radius:5px;border:0;font-size:.74rem;cursor:pointer;font-weight:500}
+.rr2{display:flex;gap:8px;align-items:center;margin-bottom:6px}
+.rr2 label{min-width:48px;font-size:.78rem;color:var(--tx3);margin:0;flex-shrink:0;font-weight:500}
+.rr2 input{flex:1;margin:0}
 .atb{display:none}.atb.v{display:block}
 .pg{display:none}.pg.a{display:block}
 
 @media(max-width:768px){
 .hg,.kwg{grid-template-columns:1fr}.kws{position:static}.stg{grid-template-columns:1fr}
-.nv{display:none;position:absolute;top:52px;left:0;right:0;background:rgba(6,9,15,.96);backdrop-filter:blur(16px);flex-direction:column;padding:10px;gap:2px;border-bottom:1px solid rgba(255,255,255,.04)}.nv.open{display:flex}.mn{display:block}
-.ag,.exg{grid-template-columns:1fr}.fti{grid-template-columns:1fr}.ad{margin:6px;padding:12px}.tk{display:none}header{top:0}
+.lp-g{grid-template-columns:repeat(2,1fr)}
+.nv{display:none;position:absolute;top:54px;left:0;right:0;background:rgba(11,15,25,.97);backdrop-filter:blur(16px);flex-direction:column;padding:12px;gap:3px;border-bottom:1px solid rgba(250,204,21,.06)}.nv.open{display:flex}.mn{display:block}
+.ag,.exg{grid-template-columns:1fr}.fti{grid-template-columns:1fr}
+.ad{margin:10px;padding:18px}.ad textarea{min-height:140px}
+.tk{display:none}header{top:0}
+}
+@media(max-width:480px){
+.lp-g{grid-template-columns:1fr}
 }
 </style>
 </head>
 <body>
 <div class="bg-dot"></div><div class="bg-g1"></div><div class="bg-g2"></div>
-<div class="tk"><div class="tk-t" id="tkT"></div></div>
+<div class="tk"><div class="tk-inner" id="tkI"></div></div>
 
 <header id="hd"><div class="mx">
 <div class="logo" onclick="go('home')"><div class="l-i">1₿</div><div class="l-t" id="logoWrap"><b id="l1">1</b>BTC<small id="l2"></small></div></div>
@@ -263,6 +291,14 @@ footer a{color:var(--em)}
 <a class="bt bt-g bn-link" target="_blank" rel="noopener noreferrer"><span data-t="cmp_bn"></span></a>
 </div></div>
 </div></div></section>
+
+<!-- LIVE PRICES -->
+<section style="padding:28px 0 48px"><div class="mx">
+<div class="fi"><span class="tg" data-t="lp_tg"></span></div>
+<h2 class="tt fi" style="font-size:1.25rem" data-t="lp_tt"></h2>
+<p class="ts fi" data-t="lp_ts"></p>
+<div class="lp-g fi" id="lpGrid"></div>
+</div></section>
 
 <section class="kw-s"><div class="mx"><div class="kwg fi">
 <div class="kwc" id="kw1"></div><aside class="kws" id="kw1s"></aside>
@@ -340,9 +376,18 @@ footer a{color:var(--em)}
 <div class="tabs2" id="aTs"></div>
 
 <div id="at-links" class="atb v">
-<p style="font-size:.64rem;color:var(--tx3);margin-bottom:6px">填入你在各交易所获取的邀请链接</p>
+<p style="font-size:.82rem;font-weight:600;color:var(--tx);margin-bottom:4px">📎 交易所邀请链接</p>
+<p style="font-size:.68rem;color:var(--tx3);margin-bottom:8px">导航栏和文章底部的注册按钮使用这些链接</p>
 <div class="rr2"><label>OKX</label><input id="r_ok"></div><div class="rr2"><label>币安</label><input id="r_bn"></div>
 <div class="rr2"><label>Bybit</label><input id="r_by"></div><div class="rr2"><label>Gate</label><input id="r_gt"></div>
+<div style="margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,.05)">
+<p style="font-size:.82rem;font-weight:600;color:var(--tx);margin-bottom:4px">💰 实时行情卡片「购买」按钮链接</p>
+<p style="font-size:.68rem;color:var(--tx3);margin-bottom:8px">首页每个币种卡片上的购买按钮跳转地址，留空则使用OKX邀请链接</p>
+<div class="rr2"><label>BTC</label><input id="r_btc" placeholder="留空 = 使用OKX链接"></div>
+<div class="rr2"><label>ETH</label><input id="r_eth" placeholder="留空 = 使用OKX链接"></div>
+<div class="rr2"><label>BNB</label><input id="r_bnb" placeholder="留空 = 使用币安链接"></div>
+<div class="rr2"><label>SOL</label><input id="r_sol" placeholder="留空 = 使用OKX链接"></div>
+</div>
 <div class="ab"><button class="abp" onclick="svR()">SAVE</button></div></div>
 
 <div id="at-site" class="atb">
@@ -351,6 +396,12 @@ footer a{color:var(--em)}
 <label>SEO Title (浏览器标签页标题)</label><input id="s_t">
 <label>SEO Description (搜索引擎描述)</label><textarea id="s_d" style="min-height:36px"></textarea>
 <label>SEO Keywords (搜索关键词，逗号分隔)</label><input id="s_k">
+<div style="margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,.05)">
+<p style="font-size:.82rem;font-weight:600;color:var(--tx);margin-bottom:6px">🎨 Favicon 网站图标</p>
+<label>方式一：输入一个Emoji（推荐，最简单）</label><input id="s_fav_e" placeholder="₿" maxlength="2" style="font-size:1.4rem;text-align:center;max-width:80px">
+<label>方式二：图标URL（.png .ico .svg，留空则用Emoji）</label><input id="s_fav_u" placeholder="https://example.com/favicon.png">
+<p style="font-size:.68rem;color:var(--tx3);margin-top:4px">Emoji方式无需上传文件，所有浏览器都支持。URL方式需要你自行托管图标文件。两种都填时优先使用URL。</p>
+</div>
 <label>页脚「关于」文字</label><textarea id="s_a" style="min-height:36px"></textarea>
 <label>页脚版权文字 (支持HTML)</label><input id="s_c" placeholder="© 2025-2026 ...">
 <div class="ab"><button class="abp" onclick="svS()">SAVE</button></div></div>
@@ -380,9 +431,50 @@ footer a{color:var(--em)}
 <script>
 const $=id=>document.getElementById(id),J=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))||d}catch{return d}},W=(k,v)=>localStorage.setItem(k,JSON.stringify(v));
 
-// TICKER
-const tkd='BTC $96,432 ▲2.1%|ETH $3,812 ▲1.8%|BNB $612 ▲0.9%|SOL $178 ▲3.2%|XRP $2.34 ▲1.1%|DOGE $0.178 ▼0.3%|ADA $0.89 ▲2.7%|AVAX $38.2 ▲1.5%';
-$('tkT').innerHTML=(tkd+'|'+tkd).split('|').map(t=>'<span>'+t.replace(/▲(.+)/,'<b class="u">↑$1</b>').replace(/▼(.+)/,'<b class="d">↓$1</b>')+'</span>').join('');
+// LIVE PRICES - Binance API
+const COINS=[
+{sym:'BTCUSDT',name:'BTC',full:'Bitcoin'},
+{sym:'ETHUSDT',name:'ETH',full:'Ethereum'},
+{sym:'BNBUSDT',name:'BNB',full:'BNB'},
+{sym:'SOLUSDT',name:'SOL',full:'Solana'},
+{sym:'XRPUSDT',name:'XRP',full:'XRP'},
+{sym:'DOGEUSDT',name:'DOGE',full:'Dogecoin'},
+{sym:'ADAUSDT',name:'ADA',full:'Cardano'},
+{sym:'AVAXUSDT',name:'AVAX',full:'Avalanche'}
+];
+const PRICE_COINS=['BTCUSDT','ETHUSDT','BNBUSDT','SOLUSDT'];
+let prices={};
+
+function fmtP(v){const n=parseFloat(v);if(n>=1000)return '$'+n.toLocaleString('en',{maximumFractionDigits:0});if(n>=1)return '$'+n.toFixed(2);return '$'+n.toFixed(4)}
+function fmtCh(v){const n=parseFloat(v);return (n>=0?'+':'')+n.toFixed(2)+'%'}
+
+// Ticker
+function renderTicker(){
+const el=$('tkI');if(!el)return;
+const items=COINS.map(c=>{const d=prices[c.sym];if(!d)return '<span class="tk-i"><span class="s">'+c.name+'</span><span class="p">...</span></span>';
+const up=parseFloat(d.ch)>=0;
+return '<span class="tk-i"><span class="s">'+c.name+'</span><span class="p">'+fmtP(d.pr)+'</span><span class="'+(up?'up':'dn')+'">'+(up?'↑':'↓')+fmtCh(d.ch)+'</span></span>'}).join('');
+el.innerHTML=items+items}
+
+// Price cards
+function renderLP(){
+const el=$('lpGrid');if(!el)return;
+const r=gR(),t=L[CL];
+const buyWord=t.lp_buy||'Buy';
+const coinLinks={BTCUSDT:r.btc||r.okx,ETHUSDT:r.eth||r.okx,BNBUSDT:r.bnb||r.binance,SOLUSDT:r.sol||r.okx};
+el.innerHTML=PRICE_COINS.map(sym=>{const c=COINS.find(x=>x.sym===sym);const d=prices[sym];const up=d?parseFloat(d.ch)>=0:true;
+const link=coinLinks[sym]||r.okx;
+return '<div class="lp"><div class="lp-top"><span class="lp-sym">'+c.name+' <small style="color:var(--tx3);font-weight:400;font-size:.65rem">'+c.full+'</small></span>'+(d?'<span class="lp-chg '+(up?'up':'dn')+'">'+(up?'↑':'↓')+fmtCh(d.ch)+'</span>':'')+'</div><div class="lp-pr">'+(d?fmtP(d.pr):'<span class="ld">Loading...</span>')+'</div><a href="'+link+'" target="_blank" rel="noopener noreferrer" class="lp-buy m">'+buyWord+' '+c.name+' →</a></div>'}).join('')}
+
+// Fetch from Binance
+function fetchPrices(){
+fetch('https://api.binance.com/api/v3/ticker/24hr?symbols='+JSON.stringify(COINS.map(c=>c.sym)))
+.then(r=>r.json()).then(data=>{
+data.forEach(d=>{prices[d.symbol]={pr:d.lastPrice,ch:d.priceChangePercent}});
+renderTicker();renderLP()
+}).catch(()=>{})}
+
+fetchPrices();setInterval(fetchPrices,8000);
 
 // ADMIN GATE
 function isS(){return location.hash==='#sys'}
@@ -408,7 +500,7 @@ kw1:'<h2>怎么买比特币？2026最新教程</h2><p><strong>买比特币</stro
 kw1s:'立即开始买比特币',
 kw2:'<h2>加密货币入门：新手必读</h2><p><strong>加密货币</strong>是基于区块链的数字资产。入门第一步：选安全的交易所。</p><h3>新手选哪个交易所？</h3><p>推荐<strong>OKX</strong>（手续费低、Web3钱包强）和<strong>币安</strong>（全球最大）。本站链接注册享<strong>20%手续费永久折扣</strong>。</p><h3>避坑指南</h3><p>• 只用闲钱，切勿借贷<br>• 先学现货，不碰合约<br>• 开启二次验证(2FA)<br>• 助记词绝不告诉任何人<br>• 认准官方域名防钓鱼</p>',
 kw2s:'零基础开始',
-ex_tg:'// 排名',ex_tt:'哪个交易所好？2026推荐排名',ex_ts:'通过邀请链接注册，永久-20%手续费',ex_ts2:'手续费、安全性、功能全面对比',
+lp_tg:'// LIVE',lp_tt:'实时行情',lp_ts:'数据来自币安 · 每8秒刷新',lp_buy:'买入',ex_tg:'// 排名',ex_tt:'哪个交易所好？2026推荐排名',ex_ts:'通过邀请链接注册，永久-20%手续费',ex_ts2:'手续费、安全性、功能全面对比',
 st_tg:'// 快速开始',st_tt:'3步买到第一个比特币',st_ts:'从注册到持有BTC，只需5分钟',
 s1t:'注册交易所',s1d:'本站链接注册OKX/币安，-20%手续费。',s2t:'KYC + 买USDT',s2d:'身份认证后C2C买入USDT。',s3t:'买入比特币',s3d:'现货市场USDT→BTC，完成！',
 ar_tg:'// 最新',ar_tt:'最新教程与资讯',ar_ts:'交易技巧、项目解读、行情分析',no_ar:'暂无文章',
@@ -428,7 +520,7 @@ cmp_t:'⚔ 幣安 vs OKX 手續費對比',cmp_okx:'註冊OKX',cmp_bn:'註冊幣�
 cmp:[['','OKX 歐易','幣安 Binance'],['現貨手續費','0.08%*','0.1%'],['合約Maker','0.02%','0.02%'],['邀請返佣','20% 永久','20% 永久'],['C2C買幣','✅ 支援','✅ 支援'],['Web3錢包','✅ 內建','❌ 需下載'],['模擬交易','✅ 支援','❌ 無'],['中文支援','⭐ 優秀','⭐ 良好']],
 kw1:'<h2>怎麼買比特幣？2026最新教程</h2><p>推薦用<strong>OKX</strong>或<strong>幣安</strong>，支援C2C購買。</p><h3>買USDT的方法</h3><p>透過交易所C2C功能，用銀行卡購買USDT，再在現貨市場換BTC。</p><h3>步驟</h3><p>1. 註冊OKX或幣安（本站連結-20%手續費）<br>2. 完成身份認證<br>3. C2C買入USDT<br>4. 現貨：USDT → BTC</p>',kw1s:'立即開始',
 kw2:'<h2>加密貨幣入門：新手必讀</h2><p>選擇安全的交易所是第一步。推薦<strong>OKX</strong>和<strong>幣安</strong>。</p><h3>避坑指南</h3><p>• 只用閒錢 • 先學現貨 • 開啟2FA • 助記詞保密 • 認準官方域名</p>',kw2s:'零基礎開始',
-ex_tg:'// 排名',ex_tt:'哪個交易所好？2026推薦排名',ex_ts:'透過邀請連結註冊，永久-20%手續費',ex_ts2:'手續費、安全性、功能全面對比',
+lp_tg:'// LIVE',lp_tt:'即時行情',lp_ts:'數據來自幣安 · 每8秒刷新',lp_buy:'買入',ex_tg:'// 排名',ex_tt:'哪個交易所好？2026推薦排名',ex_ts:'透過邀請連結註冊，永久-20%手續費',ex_ts2:'手續費、安全性、功能全面對比',
 st_tg:'// 快速開始',st_tt:'3步買到第一個比特幣',st_ts:'從註冊到持有BTC，只需5分鐘',
 s1t:'註冊交易所',s1d:'本站連結註冊，-20%手續費。',s2t:'KYC + 買USDT',s2d:'認證後C2C買入USDT。',s3t:'買入比特幣',s3d:'現貨市場USDT→BTC！',
 ar_tg:'// 最新',ar_tt:'最新教程與資訊',ar_ts:'交易技巧、項目解讀、行情分析',no_ar:'暫無文章',
@@ -448,7 +540,7 @@ cmp_t:'⚔ Binance vs OKX Fee Comparison',cmp_okx:'Sign Up OKX',cmp_bn:'Sign Up 
 cmp:[['','OKX','Binance'],['Spot Fee','0.08%*','0.1%'],['Futures Maker','0.02%','0.02%'],['Referral Bonus','20% Lifetime','20% Lifetime'],['P2P Fiat Buy','✅ Yes','✅ Yes'],['Web3 Wallet','✅ Built-in','❌ Separate'],['Demo Trading','✅ Yes','❌ No'],['Beginner UX','⭐ Excellent','⭐ Good']],
 kw1:'<h2>How to Buy Bitcoin in 2026</h2><p>The easiest way to <strong>buy Bitcoin</strong> is through a major exchange like <strong>OKX</strong> or <strong>Binance</strong>.</p><h3>How to Buy USDT</h3><p>USDT is the bridge to Bitcoin. Buy it via P2P on any exchange, then swap to BTC on the spot market.</p><h3>Step by Step</h3><p>1. Sign up for OKX or Binance (our link = -20% fees)<br>2. Complete KYC verification<br>3. Buy USDT via P2P<br>4. Spot market: USDT → BTC<br>5. Done! You own Bitcoin</p>',kw1s:'Start Buying Bitcoin',
 kw2:'<h2>Crypto for Beginners: Must-Read Guide</h2><p><strong>Cryptocurrency</strong> is blockchain-based digital assets. Step one: choose a safe exchange.</p><h3>Which Exchange Should I Use?</h3><p>We recommend <strong>OKX</strong> (lower fees, Web3 wallet) and <strong>Binance</strong> (largest globally). Our referral links give you a <strong>20% lifetime fee discount</strong>.</p><h3>Beginner Tips</h3><p>• Only invest what you can afford to lose<br>• Learn spot trading before futures<br>• Enable 2FA (Google Authenticator)<br>• Never share your seed phrase<br>• Verify official URLs to avoid phishing</p>',kw2s:'Get Started',
-ex_tg:'// RANKING',ex_tt:'Best Crypto Exchanges 2026',ex_ts:'Sign up via referral links for -20% lifetime fees',ex_ts2:'Full comparison: fees, security, features',
+lp_tg:'// LIVE',lp_tt:'Live Market Prices',lp_ts:'Data from Binance · Refreshes every 8s',lp_buy:'Buy',ex_tg:'// RANKING',ex_tt:'Best Crypto Exchanges 2026',ex_ts:'Sign up via referral links for -20% lifetime fees',ex_ts2:'Full comparison: fees, security, features',
 st_tg:'// QUICK START',st_tt:'3 Steps to Your First Bitcoin',st_ts:'From signup to holding BTC in 5 minutes',
 s1t:'Create Account',s1d:'Sign up via our link for -20% fees.',s2t:'KYC + Buy USDT',s2d:'Verify identity, buy USDT via P2P.',s3t:'Buy Bitcoin',s3d:'Spot market: USDT → BTC. Done!',
 ar_tg:'// LATEST',ar_tt:'Latest Tutorials & News',ar_ts:'Trading tips, project reviews, market analysis',no_ar:'No articles yet',
@@ -468,7 +560,7 @@ cmp_t:'⚔ 바이낸스 vs OKX 수수료 비교',cmp_okx:'OKX 가입',cmp_bn:'�
 cmp:[['','OKX','바이낸스'],['현물 수수료','0.08%*','0.1%'],['선물 Maker','0.02%','0.02%'],['추천 보너스','20% 영구','20% 영구'],['P2P 매수','✅ 지원','✅ 지원'],['Web3 지갑','✅ 내장','❌ 별도'],['모의 거래','✅ 지원','❌ 없음'],['초보자 UX','⭐ 우수','⭐ 양호']],
 kw1:'<h2>비트코인 구매 방법 2026</h2><p><strong>OKX</strong> 또는 <strong>바이낸스</strong>에서 P2P로 USDT를 매수한 후 현물에서 BTC로 교환하세요.</p><h3>단계별 안내</h3><p>1. OKX 또는 바이낸스 가입 (본 사이트 링크 = -20% 수수료)<br>2. KYC 본인인증 완료<br>3. P2P로 USDT 매수<br>4. 현물 시장: USDT → BTC<br>5. 완료! 비트코인 보유 성공</p>',kw1s:'비트코인 매수 시작',
 kw2:'<h2>암호화폐 입문: 필독 가이드</h2><p>안전한 거래소를 선택하는 것이 첫 단계입니다. <strong>OKX</strong>와 <strong>바이낸스</strong>를 추천합니다.</p><h3>초보자 팁</h3><p>• 여유 자금만 투자하세요<br>• 선물보다 현물을 먼저 배우세요<br>• 2FA를 반드시 활성화하세요<br>• 시드 문구를 절대 공유하지 마세요<br>• 공식 URL을 확인하세요</p>',kw2s:'지금 시작하기',
-ex_tg:'// 순위',ex_tt:'최고의 암호화폐 거래소 2026',ex_ts:'추천 링크로 가입 시 영구 -20% 수수료',ex_ts2:'수수료, 보안, 기능 전면 비교',
+lp_tg:'// LIVE',lp_tt:'실시간 시세',lp_ts:'바이낸스 데이터 · 8초마다 갱신',lp_buy:'매수',ex_tg:'// 순위',ex_tt:'최고의 암호화폐 거래소 2026',ex_ts:'추천 링크로 가입 시 영구 -20% 수수료',ex_ts2:'수수료, 보안, 기능 전면 비교',
 st_tg:'// 빠른 시작',st_tt:'3단계로 첫 비트코인 구매',st_ts:'가입부터 BTC 보유까지 5분',
 s1t:'계정 생성',s1d:'본 사이트 링크로 가입 = -20% 수수료.',s2t:'KYC + USDT 매수',s2d:'본인인증 후 P2P로 USDT 매수.',s3t:'비트코인 매수',s3d:'현물 시장: USDT → BTC!',
 ar_tg:'// 최신',ar_tt:'최신 튜토리얼 및 뉴스',ar_ts:'거래 팁, 프로젝트 리뷰, 시장 분석',no_ar:'아직 게시물이 없습니다',
@@ -497,7 +589,7 @@ $('cmpT').innerHTML=t.cmp.map((r,i)=>i===0?'<tr>'+r.map(c=>'<th>'+c+'</th>').joi
 $('kw1').innerHTML=t.kw1;$('kw2').innerHTML=t.kw2;
 $('kw1s').innerHTML='<h4>'+t.kw1s+'</h4><a class="bt bt-m okx-link" target="_blank" rel="noopener noreferrer">'+t.b_okx+'</a><a class="bt bt-g bn-link" target="_blank" rel="noopener noreferrer">'+t.b_bn+'</a>';
 $('kw2s').innerHTML='<h4>'+t.kw2s+'</h4><a class="bt bt-m okx-link" target="_blank" rel="noopener noreferrer">'+t.b_okx+'</a><a class="bt bt-g bn-link" target="_blank" rel="noopener noreferrer">'+t.b_bn+'</a>';
-rEx();rSt();rG();rAr();uL();apH();
+rEx();rSt();rG();rAr();uL();apH();renderLP();
 history.replaceState(null,'',location.pathname+'?lang='+l+(location.hash||''));
 }
 
@@ -537,9 +629,10 @@ function dFL(i){const f=gFL();f.splice(i,1);sFL(f);rFL()}
 
 // SITE SETTINGS
 function gSi(){return J('1b_s',{})}
-function lSi(){const s=gSi();$('s_n').value=s.name||'';$('s_s').value=s.sub||'';$('s_t').value=s.sT||'';$('s_d').value=s.sD||'';$('s_k').value=s.sK||'';$('s_a').value=s.about||'';$('s_c').value=s.copy||''}
-function svS(){W('1b_s',{name:$('s_n').value.trim(),sub:$('s_s').value.trim(),sT:$('s_t').value.trim(),sD:$('s_d').value.trim(),sK:$('s_k').value.trim(),about:$('s_a').value.trim(),copy:$('s_c').value.trim()});apSi();alert('✅')}
-function apSi(){const s=gSi();if(s.sT)document.title=s.sT;const md=document.querySelector('meta[name="description"]');if(s.sD&&md)md.content=s.sD;const mk=document.querySelector('meta[name="keywords"]');if(s.sK&&mk)mk.content=s.sK;if(s.name)$('l1').textContent=s.name;if(s.sub)$('l2').textContent=s.sub;if(s.about)$('fAb').textContent=s.about;if(s.copy){$('fCp').innerHTML=s.copy;$('fCp').dataset.custom='1'}}
+function lSi(){const s=gSi();$('s_n').value=s.name||'';$('s_s').value=s.sub||'';$('s_t').value=s.sT||'';$('s_d').value=s.sD||'';$('s_k').value=s.sK||'';$('s_fav_e').value=s.favE||'';$('s_fav_u').value=s.favU||'';$('s_a').value=s.about||'';$('s_c').value=s.copy||''}
+function svS(){W('1b_s',{name:$('s_n').value.trim(),sub:$('s_s').value.trim(),sT:$('s_t').value.trim(),sD:$('s_d').value.trim(),sK:$('s_k').value.trim(),favE:$('s_fav_e').value.trim(),favU:$('s_fav_u').value.trim(),about:$('s_a').value.trim(),copy:$('s_c').value.trim()});apSi();alert('✅')}
+function apSi(){const s=gSi();if(s.sT)document.title=s.sT;const md=document.querySelector('meta[name="description"]');if(s.sD&&md)md.content=s.sD;const mk=document.querySelector('meta[name="keywords"]');if(s.sK&&mk)mk.content=s.sK;if(s.name)$('l1').textContent=s.name;if(s.sub)$('l2').textContent=s.sub;if(s.about)$('fAb').textContent=s.about;if(s.copy){$('fCp').innerHTML=s.copy;$('fCp').dataset.custom='1'}apFav(s)}
+function apFav(s){const fi=$('favicon');if(!fi)return;if(s.favU){fi.href=s.favU}else if(s.favE){fi.href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>"+encodeURIComponent(s.favE)+"</text></svg>"}}
 
 // HERO CUSTOM
 function gH(){return J('1b_h',{})}
@@ -556,8 +649,8 @@ function go(p){document.querySelectorAll('.pg').forEach(e=>e.classList.remove('a
 
 // ADMIN
 function gPw(){return localStorage.getItem('1b_pw')||'admin888'}
-function ck(){if($('aP').value===gPw()){$('aL').style.display='none';$('aM').style.display='block';const r=gR();$('r_ok').value=r.okx;$('r_bn').value=r.binance;$('r_by').value=r.bybit;$('r_gt').value=r.gate;lSi();lH();rAL();rFLA()}else alert('✗')}
-function svR(){W('1b_r',{okx:$('r_ok').value||DR.okx,binance:$('r_bn').value||DR.binance,bybit:$('r_by').value||DR.bybit,gate:$('r_gt').value||DR.gate});uL();rEx();setL(CL);alert('✅')}
+function ck(){if($('aP').value===gPw()){$('aL').style.display='none';$('aM').style.display='block';const r=gR();$('r_ok').value=r.okx;$('r_bn').value=r.binance;$('r_by').value=r.bybit;$('r_gt').value=r.gate;$('r_btc').value=r.btc||'';$('r_eth').value=r.eth||'';$('r_bnb').value=r.bnb||'';$('r_sol').value=r.sol||'';lSi();lH();rAL();rFLA()}else alert('✗')}
+function svR(){W('1b_r',{okx:$('r_ok').value||DR.okx,binance:$('r_bn').value||DR.binance,bybit:$('r_by').value||DR.bybit,gate:$('r_gt').value||DR.gate,btc:$('r_btc').value.trim(),eth:$('r_eth').value.trim(),bnb:$('r_bnb').value.trim(),sol:$('r_sol').value.trim()});uL();rEx();setL(CL);alert('✅')}
 function cPw(){const p=$('nP').value.trim();if(!p)return;localStorage.setItem('1b_pw',p);alert('✅');$('nP').value=''}
 
 // AUTO YEAR
